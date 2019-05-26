@@ -6,15 +6,13 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Base64Utils;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
@@ -33,7 +31,7 @@ public class UploadController {
     public String  ky(HttpServletResponse response){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success", "true");
-         return "showData"+"({\"name\":\"去宏源\"})";
+         return "showData"+"("+jsonObject.toJSONString()+")";
 //        return "ky("+ jsonObject.toJSONString()+")";
     }
 
@@ -97,6 +95,7 @@ public class UploadController {
         while (it.hasNext()) {
             FileItem item = (FileItem) it.next();
             if (item.getName() != null && !"".equals(item.getName())) {
+                InputStream inputStream = item.getInputStream();
                 System.out.println("上传的文件名称为：" + item.getName());
             }
         }
@@ -106,15 +105,13 @@ public class UploadController {
     }
 
     @CrossOrigin("http://127.0.0.1:8848")
-    public void uploadString(HttpServletResponse response, @RequestParam String age, String name, HttpServletRequest request) throws Exception {
+    public void uploadString(HttpServletResponse response, @RequestParam String pic, String name, HttpServletRequest request) throws Exception {
 //        response.setContentType("application/json;charset=utf-8");
-        String age1 = request.getParameter("age");
-        String[] split = age.split("base64,");
-        byte[] bytes = Base64Utils.decodeFromString(split[1]);
-        FileCopyUtils.copy(bytes, new File(fileUrl + name));
-        PrintWriter writer = response.getWriter();
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("success", "true");
-        writer.write(jsonObject.toJSONString());
+//        byte[] bytes = Base64Utils.decodeFromString("");
+//        FileCopyUtils.copy(bytes, new File(fileUrl + name));
+//        PrintWriter writer = response.getWriter();
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("success", "true");
+//        writer.write(jsonObject.toJSONString());
     }
 }
