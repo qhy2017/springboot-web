@@ -18,6 +18,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<skipTests>true</skipTests>
 	</properties>
 
 	<dependencies>
@@ -144,6 +145,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!--generatorConfig-->
 			<plugin>
 				<!--Mybatis-generator插件,用于自动生成Mapper和POJO-->
 				<groupId>org.mybatis.generator</groupId>
@@ -175,7 +177,6 @@
 						<version>5.1.46</version>
 					</dependency>
 				</dependencies>
-
 			</plugin>
 		</plugins>
 	</build>

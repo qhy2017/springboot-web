@@ -17,6 +17,9 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author 12423
+ */
 @Controller
 public class UploadController {
     @Value("${url:D:\\upload-dir\\}")
@@ -59,6 +62,7 @@ public class UploadController {
 //        for (MultipartFile item : files){
 //            System.out.println(item.getOriginalFilename());
 //        }
+
         getFileName(request);
 
         //--------------------------------------------------第一种
@@ -79,6 +83,7 @@ public class UploadController {
 //        bos.flush();
 //        bos.close();
 //        bis.close();
+
         PrintWriter writer = response.getWriter();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success", "true");

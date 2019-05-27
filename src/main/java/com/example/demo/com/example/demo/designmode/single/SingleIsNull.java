@@ -4,13 +4,10 @@ package com.example.demo.com.example.demo.designmode.single;
  * 懒汉式
  */
 public class SingleIsNull {
-    private static final SingleIsNull ourInstance = null;
+    private static SingleIsNull ourInstance = new SingleIsNull();
 
-    public static SingleIsNull getInstance() {
-        if(ourInstance == null){
-            ourInstance = new SingleIsNull();
-        }
-        return ourInstance;
+    public static synchronized SingleIsNull getInstance() {
+         return ourInstance;
     }
     private SingleIsNull() {
     }
