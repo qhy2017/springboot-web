@@ -7,10 +7,33 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Suanshu {
-    public  static void main(String[] args){
 
-        int width = 20;
-        System.out.println(String.format("大家好 %1$,0"+width+"d", 999999999,"你好"));
+    public static int findLost(int a[]){
+        int result=0;
+        for(int i=0;i<a.length;i++) {
+            result = result^a[i];
+        }
+        return result;
+    }
+    public  static void main(String[] args){
+        int[] arr = new int[]{2,2,3,4,5,4,3,6,6};
+         System.out.println(findLost(arr));
+
+//        int a = 134;
+//        System.out.println(a/100);
+//        System.out.println(a/10%10);
+//        System.out.println(a%10);
+//        int b = 1;
+//        System.out.println(4 << 2);
+//        System.out.println(2 << 4);
+//        int c = 1,d= 2;
+
+//        System.out.println(d);
+//        System.out.println(3|5);
+//        System.out.println(5|3);
+//        System.out.println(7|7);
+        //int width = 20;
+        //System.out.println(String.format("大家好 %1$,0"+width+"d", 999999999,"你好"));
 //        System.out.println(toBinary(8));
 //        listSort()
 //        System.out.println(addPlus(15L));
@@ -178,11 +201,12 @@ public class Suanshu {
     }
     public static String toBinary(int num){
         String str = "";
-
+        StringBuffer s = new StringBuffer();
         while(num != 0){
             str = num % 2 + str;
+            s.append(num % 2);
             num = num /2;
         }
-        return str;
+        return s.reverse().toString();
     }
 }

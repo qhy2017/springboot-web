@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/js/mmg/src/mmGrid.css"/>
+    <link rel="stylesheet" href="/static/js/mmg/src/mmPaginator.css"/>
+    <script type="text/javascript" src="/static/js/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/mmg/src/mmGrid.js"></script>
+    <script type="text/javascript" src="/static/js/mmg/src/mmPaginator.js"></script>
+</head>
+<main>
+    <table id="mmg" class="mmg">
+        <tr>
+            <th rowspan="" colspan=""></th>
+        </tr>
+    </table>
+    <div id="pg" style="text-align: right;"></div>
+    <button onclick="getStatus()">测试</button>
+</main>
+<body>
+
+<script type="text/javascript">
+    var mmg;
+    var json = {flag:true};
+    var s = "";
+    $(document).ready(function () {
+        queryList();
+    });
+
+    function queryList() {
+        var cols = [{title: '姓名', name: 'name',renderer:function (v,r,i) {
+                json.flag = false;s="123";
+            }}, {title: '年龄', name: 'age'}];
+        var items = [{name: '渠红元', age: '26'}, {name: '渠红元', age: '25'}];
+        mmg = $('.mmg').mmGrid({
+            height: 400
+            , cols: cols
+            , url: 'mmgList'
+            , method: 'POST'
+            // , remoteSort: true
+            , root: 'items'
+            ,nowrap:true
+            , multiSelect: true
+            , checkCol: true
+            , fullWidthRows: true
+            , autoLoad: true
+            , plugins: [
+                $('#pg').mmPaginator()
+            ]
+            , params: function () {
+                //如果这里有验证，在验证失败时返回false则不执行AJAX查询。
+                return {};
+            }
+        });
+    }
+    function getStatus() {
+        alert(JSON.stringify(json) + s);
+    }
+</script>
+</body>
+</html>
