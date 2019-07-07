@@ -11,9 +11,14 @@ import java.util.Random;
 
 @Controller
 public class ImageController {
+    int a = 0;
     @RequestMapping("getImage")
     public void getImage(HttpServletResponse response) throws Exception{
-        response.setContentType("image/jpeg");//声明文件格式  
+        response.setContentType("image/jpeg");
+        response.setHeader("Pragma", "No-Cache");
+        response.setHeader("Cache-Control", "No-Cache");
+        response.setDateHeader("Expires", 0);
+        //response.setHeader("Refresh","1");
 //绘制宽=480，长=640的图板  
         int width=100,hight=40;
 BufferedImage image=new BufferedImage(width,hight,BufferedImage.TYPE_3BYTE_BGR);
@@ -95,8 +100,9 @@ graphics.drawString("1 2 3 4",200,150-5);
 //graphics.drawString("错误的背景颜色", 100, 540);  
 //grahics.setPaintMode();  
 //graphics.translate(400, 600);  
-//        graphics.dispose();//释放此图形的上下文并释放它所使用的所有系统资源  
-//        ImageIO.write(image,"png",response.getOutputStream());
+        graphics.dispose();//释放此图形的上下文并释放它所使用的所有系统资源  
+       // ImageIO.write(image,"png",response.getOutputStream());
         ImageRamdom.outputImage(ImageRamdom.random(),response.getOutputStream());
+        System.err.println(a++);
     }
 }
