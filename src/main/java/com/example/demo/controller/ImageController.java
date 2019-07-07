@@ -20,7 +20,7 @@ public class ImageController {
         response.setHeader("Cache-Control", "No-Cache");
         response.setDateHeader("Expires", 0);
 
-         //       response.setHeader("Refresh","1");
+         ///       response.setHeader("Refresh","1");
 
         final String random1 = ImageRamdom.random();
         ImageRamdom.outputImage(random1,response.getOutputStream());
