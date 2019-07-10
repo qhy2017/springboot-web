@@ -13,13 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class ImageController {
     int a = 0;
-    @RequestMapping("getImage")
+    @RequestMapping(value = "/getImage")
     public void getImage(HttpServletResponse response) throws Exception{
         response.setContentType("image/jpeg");
         response.setHeader("Pragma", "No-Cache");
         response.setHeader("Cache-Control", "No-Cache");
         response.setDateHeader("Expires", 0);
-
          ///       response.setHeader("Refresh","1");
 
         final String random1 = ImageRamdom.random();
