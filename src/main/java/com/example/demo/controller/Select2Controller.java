@@ -17,6 +17,8 @@ public class Select2Controller {
             jsonT.put("id",i + 1);
             jsonT.put("text",q+"测试" + i);
             jsonArray.add(jsonT);
+
+            ///hello
         }
         json.put("items",jsonArray);
         System.out.println(json.toJSONString());
