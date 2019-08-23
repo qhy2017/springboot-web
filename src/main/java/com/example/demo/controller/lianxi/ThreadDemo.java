@@ -249,7 +249,6 @@ public class ThreadDemo {
     }                   //ss
 
     public static void threadDemo(){
-
         //设置线程的名称 区分业务
         ThreadFactory namedThreadFactory = new UtilityElf.DefaultThreadFactory("demo",true);
         //四种线程池
@@ -280,28 +279,23 @@ public class ThreadDemo {
 
         ThreadPoolExecutor th = new ThreadPoolExecutor(1,3,0, TimeUnit.DAYS,new LinkedBlockingQueue<>());
         ThreadDemo d = new ThreadDemo();
-        new Thread(new Runnable() {
+        th.execute(new Runnable() {
             @Override
             public void run() {
                 d.showA();
             }
-        }).start();
-
-        new Thread(new Runnable() {
+        });
+        th.execute(new Runnable() {
             @Override
             public void run() {
                 d.showB();
             }
-        }).start();
-
-        new Thread(new Runnable() {
+        });
+        th.execute(new Runnable() {
             @Override
             public void run() {
                 d.showC();
             }
-        }).start();
+        });
     }
-
-
-
 }

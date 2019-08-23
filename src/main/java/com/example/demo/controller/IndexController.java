@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -18,22 +19,23 @@ public class IndexController {
 
         return "mmgGrid";
     }
-
+    @CrossOrigin(origins = {"*"})
     @ResponseBody
     @RequestMapping(value = "mmgList",produces = "application/json;charset=utf-8")
     public Object indexMmgList(){
         JSONObject jsonObject = new JSONObject();
         JSONArray  array = new JSONArray();
-        for(int i=0;i<1000;i++){
+//        for(int i=0;i<1000;i++){
             JSONObject jsonObjectd = new JSONObject();
             jsonObjectd.put("name","渠红元");
             jsonObjectd.put("age","27");
             array.add(jsonObjectd);
-        }
+//        }
         jsonObject.put("items",array);
         jsonObject.put("totalCount",array.size());
 
         return jsonObject;
     }
+
 
 }
